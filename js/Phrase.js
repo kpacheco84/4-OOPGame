@@ -46,14 +46,14 @@ class Phrase {
 	addPhraseToDisplay() {
 		const hideDiv = document.querySelectorAll('#phrase');
 		const letters = this.phrase.length;
+		// working to append to ul 
+		//working to add each letter to console
 		for (var i = 0; i < letters; i += 1) {
-			if (this.phrase[i] === '') {
-				$("#phrase ul").push("<li class = 'space'>", this.phrase[i], "</li>")
-			} else {
-				$("#phrase ul").push("<li class = 'hide'>", this.phrase[i], "</li>")
-            }
-            console.log($('#phrase ul').text())
-        }
-        
+			if (this.phrase[i] !== '') {
+                $("#phrase ul").push("<li class = 'hide letter'", this.phrase[i], ">", this.phrase[i], "</li>"); }
+                else{
+					$("#phrase ul").push("<li class = 'space'>", this.phrase[i], "</li>");
+				}
+			}
+		}
 	}
-}
