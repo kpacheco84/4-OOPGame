@@ -5,65 +5,62 @@ class Phrase {
 	constructor(phrase) {
 		this.phrase = phrase.toLowerCase();
 	}
-	/*<div id="phrase" class="section">
-	    <ul>
-	        <li class="hide letter h">h</li>
-	        <li class="hide letter o">o</li>
-	        <li class="hide letter w">w</li>
-	        <li class="space"> </li>
-	        <li class="hide letter a">a</li>
-	        <li class="hide letter r">r</li>
-	        <li class="hide letter e">e</li>
-	        <li class="space"> </li>
-	        <li class="hide letter y">y</li>
-	        <li class="hide letter o">o</li>
-	        <li class="hide letter u">u</li>
-	    </ul>
-	</div>
-
-
-
-	const pageNum = (Math.ceil(list / 10));
-	const ul = document.createElement('ul');
-	const div = document.createElement('div');
-	div.className = 'pagination';
-	const pageDiv = document.querySelector('.page');
-	pageDiv.appendChild(div);
-	let pages = 0;
-	div.appendChild(ul);
-	//loop to add the needed page numbers to the page
-	for (i = 1; i <= pageNum; i += 1) {
-		pages += 1;
-		const li = document.createElement('li');
-		ul.appendChild(li);
-		const a = document.createElement("a");
-		a.textContent = pages;
-		li.appendChild(a);
-		a.href = '#';
-		//set 1st page to active on load
-		let initialPage = document.querySelector('a').className = 'active';
-	*/
 	addPhraseToDisplay() {
 		const hideDiv = document.querySelectorAll('#phrase');
-        const letters = this.phrase.length;
-        
-		// working to append to ul 
-		//working to add each letter to console
-		for (var i = 0; i < letters; i += 1) {
-            
-			if (this.phrase[i] !== '') {
-               
-                $("#phrase ul").append("<li>", this.phrase[i], "</li>")
-                $("#phrase li[i]").addClass(`hide letter ${this.phrase[i]}`); 
-
-            
-            }
-                else{
-                    $("#phrase ul").append("<li>", this.phrase[i], "</li>");
-                    $("#phrase li[i]").addClass('space');
-				}
-            }
-            
-        }
-        
+		const letters = this.phrase.length;
+		const li = document.createElement('li');
+		// append li to ul 
+		// add each letter to console
+		for (let i = 0; i < this.phrase.length; i++) {
+			this.phrase[i].split('');
+			const li = document.createElement('li');
+			li.textContent = this.phrase[i];
+			if (this.phrase[i] === ' ') {
+				li.className = `space`;
+			} else {
+				li.className = `hide letter ${this.phrase[i]}`;
+			}
+			const phraseDiv = document.getElementById('phrase');
+			phraseDiv.querySelector('ul').appendChild(li);
+		}
 	}
+	/**
+
+	     * checks a users chosen letter against the phrase
+
+	     * @param {string} letter - letter to be checked
+
+	     */
+	checkLetter(letter) {
+		let ltrExists = false
+		let phrase = this.phrase.split('');
+		phrase.filter(letters => {
+			if (letters === letter) {
+				this.showMatchedLetter(letter);
+				ltrExists = true;
+			}
+		});
+		return ltrExists;
+	}
+	/**
+
+	 * shows chosen letter if it is in the phrase
+
+	 * @param {string}  letter - letter to be displayed
+
+	 */
+	showMatchedLetter(letter) {
+		//select all select all of the letter DOM elements that have a 
+		//CSS class name that matches the selected letter and
+		//replace each selected element's `hide` CSS class with the `show` CSS class.
+		const list = document.querySelectorAll('.hide');
+		list.forEach(el => {
+			if (el.textContent === letter) {
+              // show letter adding a blinking effect
+				$(el).addClass("show").fadeIn(100).fadeOut(100).fadeIn(100);
+				
+				
+			}
+		});
+	}
+};
