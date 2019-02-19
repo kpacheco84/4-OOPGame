@@ -55,8 +55,15 @@ class Game {
 				button.className = 'chosen'
 			}
 			//check for a win
-			this.checkForWin();
+			
 		}
+		if (this.checkForWin() == true) { //check if the user has won
+
+			this.gameOver(true); //call the gamewon is equal to true
+ 
+		} 
+ 
+	
 	}
 	/**
 
@@ -67,9 +74,14 @@ class Game {
 	 */
 	checkForWin() {
 		//check if all the letters are revealed
-		let hidden = document.querySelectorAll('.hide');
+		let hidden = document.getElementsByClassName('hide').length;
+		console.log(hidden);
 		if (hidden.length === 0) {
-			this.gameOver();
+			//this.gameOver();
+			return true
+		} else {
+        return false
+
 		}
 	}
 	/**
