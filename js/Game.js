@@ -77,12 +77,9 @@ class Game {
 		let hidden = document.getElementsByClassName('hide').length;
 		console.log(hidden);
 		if (hidden.length === 0) {
-			//this.gameOver();
-			return true
-		} else {
-        return false
-
-		}
+			this.gameOver();
+			//return true
+		} 
 	}
 	/**
 
@@ -98,7 +95,10 @@ class Game {
 		$(hearts).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 		hearts[this.missed - 1].src = 'images/lostHeart.png';
 		if (this.missed === 5) {
-			this.gameOver();
+		
+			return true
+		}else {
+			return false
 		}
 	}
 	/**

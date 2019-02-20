@@ -57,7 +57,7 @@ class Phrase {
 		list.forEach(el => {
 			if (el.textContent === letter) {
               // show letter adding a blinking effect
-				$(el).addClass("show").fadeIn(100).fadeOut(100).fadeIn(100);
+				$(el).addClass("show").removeClass('hide').fadeIn(100).fadeOut(100).fadeIn(100);
 				
 				
 			}
