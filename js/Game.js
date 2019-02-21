@@ -76,7 +76,7 @@ class Game {
 		//check if all the letters are revealed
 		let hidden = document.getElementsByClassName('hide').length;
 		console.log(hidden);
-		if (hidden.length === 0) {
+		if (hidden === 0) {
 			this.gameOver();
 			//return true
 		} 
@@ -96,9 +96,7 @@ class Game {
 		hearts[this.missed - 1].src = 'images/lostHeart.png';
 		if (this.missed === 5) {
 		
-			return true
-		}else {
-			return false
+			this.gameOver();
 		}
 	}
 	/**
